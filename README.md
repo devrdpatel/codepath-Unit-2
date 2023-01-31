@@ -32,6 +32,9 @@ Here's a walkthrough of implemented user stories:
 
 <img src='https://imgur.com/a/LKL0ZC0' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+![Imgur Image](https://imgur.com/a/LKL0ZC0)
+
+
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with Kap for MacOS  
 
