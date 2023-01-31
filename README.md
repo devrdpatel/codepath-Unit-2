@@ -36,7 +36,7 @@ GIF created with Kap for MacOS
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Implementing a table view was pretty straightforward for me. I found it challenging trying to implement a collection view and then connecting it using a tabview so in the end, I ended up not adding that to this project.
 
 ## License
 
