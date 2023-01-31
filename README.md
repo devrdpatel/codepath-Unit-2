@@ -32,7 +32,6 @@ Here's a walkthrough of implemented user stories:
 
 <img src='https://github.com/devrdpatel/codepath-Unit-2/blob/main/Flixster-Pt1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<!-- Replace this with whatever GIF tool you used! -->
 GIF created with Kap for MacOS  
 
 ## Notes
