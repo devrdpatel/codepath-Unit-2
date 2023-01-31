@@ -30,10 +30,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://imgur.com/a/LKL0ZC0' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-![Imgur Image](https://imgur.com/a/LKL0ZC0)
-
+<img src='https://github.com/devrdpatel/codepath-Unit-2/blob/main/Flixster-Pt1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with Kap for MacOS  
