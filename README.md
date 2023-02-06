@@ -90,7 +90,7 @@ GIF created with Kap for MacOS
 
 ## Notes
 
-It was challenging trying to adjust the layout of the collection view so that the poster images fit nicely. There are so many different customizations available with a collection view and it was initially difficult to figure out what I needed to change but I was eventually able to figure it out. 
+It was challenging trying to adjust the layout of the collection view so that the poster images fit nicely. There are so many different customizations available with a collection view and it was initially difficult to figure out what I needed to change but I was eventually able to figure it out. I also tried to make an additional network call to another end-point but couldn't figure out how to do resuse the existing tableview for this yet so the See Similar Movies button that is visible currently doesn't work as expected.
 
 ## License
 
