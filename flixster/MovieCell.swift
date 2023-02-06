@@ -25,7 +25,7 @@ class MovieCell: UITableViewCell {
         movieTitle.text = movie.originalTitle
         movieOverview.text = movie.overview
         
-        Nuke.loadImage(with: URL(string: Movie.posterBaseURLString + movie.posterPath)!, into: posterImageView)
+        Nuke.loadImage(with: URL(string: Movie.posterBaseURLString200 + movie.posterPath)!, into: posterImageView)
     }
     
 

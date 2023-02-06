@@ -10,6 +10,8 @@ import UIKit
 class MovieListViewController: UIViewController, UITableViewDataSource {
     
     var movies: [Movie] = [Movie]()
+    
+    var similarMovieId: Int64 = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +20,54 @@ class MovieListViewController: UIViewController, UITableViewDataSource {
         
         overrideUserInterfaceStyle = .dark
         
+        /*
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
          
         navigationItem.standardAppearance = appearance
+        */
         
-        movies = MoviesResponse.loadJson()
-                
-        tableView.dataSource = self
+        // Only used to load locally stored data
+        //movies = MoviesResponse.loadJson()
+        
+        if (similarMovieId == 0) {
+            let url = URL(string: "https:api.themoviedb.org/3/movie/now_playing?api_key=68d63fb0346c4fb2422a602de8698de4")!
+            
+            let request = URLRequest(url: url)
+            
+            let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+                // Handle any errors
+                if let error = error {
+                    print("❌ Network error: \(error.localizedDescription)")
+                }
+
+                // Make sure we have data
+                guard let data = data else {
+                    print("❌ Data is nil")
+                    return
+                }
+
+                do {
+                    let decoder = JSONDecoder()
+
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let response = try decoder.decode(MoviesResponse.self, from: data)
+                    let movies = response.results
+                    
+                    DispatchQueue.main.async {
+                        self?.movies = movies
+                        self?.tableView.reloadData()
+                    }
+                } catch {
+                    print("❌ Error parsing JSON: \(error.localizedDescription)")
+                }
+
+            }
+            
+            task.resume()
+            tableView.dataSource = self
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,6 +75,46 @@ class MovieListViewController: UIViewController, UITableViewDataSource {
         // Deselects the MovieCell that was selected
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
+        }
+        if (similarMovieId != 0) {
+            let url = URL(string: "https://api.themoviedb.org/3/movie/\(similarMovieId)/similar?api_key=68d63fb0346c4fb2422a602de8698de4")!
+            
+            let request = URLRequest(url: url)
+            
+            let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+
+                // Handle any errors
+                if let error = error {
+                    print("❌ Network error: \(error.localizedDescription)")
+                }
+
+                // Make sure we have data
+                guard let data = data else {
+                    print("❌ Data is nil")
+                    return
+                }
+
+                do {
+                    let decoder = JSONDecoder()
+                    print(data)
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let response = try decoder.decode(MoviesResponse.self, from: data)
+                    let movies = response.results
+                    
+                    DispatchQueue.main.async {
+                        self?.movies = movies
+                        self?.tableView.reloadData()
+                    }
+                } catch {
+                    print("❌ Error parsing JSON: \(error.localizedDescription)")
+                }
+
+            }
+            
+            task.resume()
+            
+            similarMovieId = 0
+            //tableView.dataSource = self
         }
     }
     

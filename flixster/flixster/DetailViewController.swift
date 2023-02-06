@@ -48,6 +48,18 @@ class DetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "similarMoviesSegue" {
+            let movieListViewController = segue.destination as? MovieListViewController
+            movieListViewController?.similarMovieId = movie.id
+        }
+    }
+    
+    @IBAction func similarMovies(_ sender: UIButton) {
+        performSegue(withIdentifier: "similarMoviesSegue", sender: sender)
+    }
+    
 
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
